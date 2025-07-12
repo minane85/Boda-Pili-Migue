@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boda Pili & Miguel Ángel</title>
   <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg-color: #fff8f3;
       --text-color: #333;
       --section-bg: #ffffff;
+      --accent: #b48c75;
     }
-
     body.dark-mode {
       --bg-color: #1f1f1f;
       --text-color: #f5f5f5;
       --section-bg: #2c2c2c;
     }
-
     body {
       font-family: 'Lora', serif;
       margin: 0;
@@ -27,23 +26,105 @@
       color: var(--text-color);
       transition: background-color 0.6s ease, color 0.6s ease;
     }
+    h1, h2 {
+      font-family: 'Great Vibes', cursive;
+      color: var(--accent);
+      font-size: 36px;
+    }
+    p, li {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    button {
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background: #a6795f; }
 
     nav {
       background: var(--section-bg);
-      padding: 15px;
-      text-align: center;
+      padding: 15px 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centrar enlaces */
+      gap: 40px; /* Espacio entre botón y menú */
+      position: relative;
     }
-
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      overflow: hidden;
+      max-height: 200px; /* Visible */
+      opacity: 1;
+    }
     nav a {
-      margin: 0 15px;
       text-decoration: none;
-      color: #b48c75;
+      color: var(--accent);
       font-weight: bold;
       font-size: 18px;
+    }
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 300;
+      transition: transform 0.3s ease;
+    }
+    .hamburger.open {
+      transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+      }
+      .nav-links {
+        flex-direction: column;
+        background: var(--section-bg);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        left: 10px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .nav-links.show {
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .hamburger {
+        display: block;
+      }
     }
 
     section {
@@ -57,85 +138,15 @@
       transform: translateY(20px);
       animation: fadeInUp 0.8s forwards;
     }
-
     section:nth-of-type(2) { animation-delay: 0.2s; }
     section:nth-of-type(3) { animation-delay: 0.4s; }
     section:nth-of-type(4) { animation-delay: 0.6s; }
     section:nth-of-type(5) { animation-delay: 0.8s; }
     section:nth-of-type(6) { animation-delay: 1s; }
-
+    section:nth-of-type(7) { animation-delay: 1.2s; }
+    section:nth-of-type(8) { animation-delay: 1.4s; }
     @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1, h2 {
-      font-family: 'Great Vibes', cursive;
-      color: #b48c75;
-      font-size: 36px;
-    }
-
-    p, li {
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      background: #b48c75;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #a6795f;
-    }
-
-    .toggle-dark-mode {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #b48c75;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    .toggle-audio {
-      position: fixed;
-      top: 50px;
-      right: 10px;
-      background: #b48c75;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 999;
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .galeria {
@@ -144,87 +155,206 @@
       gap: 15px;
       margin-top: 30px;
     }
-
     .galeria img {
       width: 100%;
       height: auto;
       border-radius: 8px;
     }
+
+    .countdown {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      position: fixed;
+      right: 10px;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 999;
+      background: var(--accent);
+      color: white;
+    }
+    #darkBtn { top: 10px; }
+    #audioBtn { top: 55px; }
   </style>
 </head>
 <body>
 
-<button class="toggle-dark-mode" onclick="document.body.classList.toggle('dark-mode')">🌙 Modo oscuro</button>
-<button class="toggle-audio" onclick="toggleAudio()">🎵 Música</button>
-<audio id="bodaAudio" autoplay loop style="display:none">
-  <source src="audio/musica-boda.mp3" type="audio/mpeg">
-</audio>
+  <!-- Botones flotantes -->
+  <button id="darkBtn" class="toggle-btn" onclick="document.body.classList.toggle('dark-mode')">🌙 Modo oscuro</button>
+  <button id="audioBtn" class="toggle-btn" onclick="toggleAudio()">🎵 Música</button>
 
-<nav>
-  <a href="#iglesia">Iglesia</a>
-  <a href="#celebracion">Celebración</a>
-  <a href="#transporte">Transporte</a>
-  <a href="#confirmacion">Confirmación</a>
-  <a href="#galeria">Galería</a>
-  <a href="#faq">FAQ</a>
-</nav>
+  <!-- Audio autoplay -->
+  <audio id="bodaAudio" autoplay loop>
+    <source src="audio/musica-boda.mp3" type="audio/mpeg" />
+  </audio>
 
-<section id="iglesia">
-  <h2>Iglesia</h2>
-  <p><strong>Parroquia:</strong> Santa María<br>
-     <strong>Hora:</strong> 12:30 h<br>
-     <strong>Dirección:</strong> Calle Mayor, 12 – Sevilla</p>
-  <a href="https://maps.google.com" target="_blank">Ver en Google Maps</a>
-  <img src="img/iglesia.jpg" alt="Iglesia">
-</section>
+  <!-- Navegación -->
+  <nav>
+    <button class="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="nav-menu" onclick="toggleMenu(this)">☰</button>
+    <div id="nav-menu" class="nav-links" role="menu">
+      <a href="#countdown" role="menuitem">Cuenta atrás</a>
+      <a href="#historia" role="menuitem">Nuestra Historia</a>
+      <a href="#iglesia" role="menuitem">Iglesia</a>
+      <a href="#celebracion" role="menuitem">Celebración</a>
+      <a href="#transporte" role="menuitem">Transporte</a>
+      <a href="#dresscode" role="menuitem">Dress Code</a>
+      <a href="#confirmacion" role="menuitem">Confirmación</a>
+      <a href="#galeria" role="menuitem">Galería</a>
+      <a href="#faq" role="menuitem">FAQ</a>
+    </div>
+  </nav>
 
-<section id="celebracion">
-  <h2>Celebración</h2>
-  <p><strong>Lugar:</strong> Hacienda El Olivar<br>
-     <strong>Hora:</strong> 14:30 h<br>
-     <strong>Dirección:</strong> Carretera A-376, km 23</p>
-  <a href="https://maps.google.com" target="_blank">Ver en Google Maps</a>
-  <img src="img/hacienda.jpg" alt="Hacienda">
-</section>
+  <!-- Cuenta atrás -->
+  <section id="countdown">
+    <h2>Cuenta atrás para el gran día</h2>
+    <div class="countdown" id="counter"></div>
+  </section>
 
-<section id="transporte">
-  <h2>Transporte</h2>
-  <p><strong>Salida de autobuses:</strong> Avenida de la Constitución, 11:30 h</p>
-  <p><strong>Vuelta:</strong> 22:00 h y 01:00 h</p>
-  <p><a href="https://maps.google.com">Ver Iglesia</a> | <a href="https://maps.google.com">Ver Hacienda</a></p>
-</section>
+  <!-- Historia -->
+  <section id="historia">
+    <h2>Nuestra Historia</h2>
+    <p>Pues tal día como el de nuestra boda, pero 4 años atrás, empezamos a hablar los dos a través del movil, eso sí "ayudados" por Marta (hermana de Pilarín) que hizo de celestina y cuenta que de 
+	esta forma le devolvió el favor a Pili, ya que ella le presentó a su marido. </br></br>
+	Pues ese primer día de contacto, conectamos y todo resultó natural, sencillo y espontaneo. Mismo adjetivos que nos caracterizan y que resumen nuestro mantra y ley de vida que es la de disfrutar cada momento,
+    ya sea un botellin en la alameda, una cena en un restaurante de postín o un picnic en la playa; que por cierto, justo ese fue el momento que eligío Migue, para pedir matrimonio a Pili, un picnic a sólas,
+    en uno de los sitios favoritos de Antonio (padre de Pili, que no se encuentra con nosotros por desgracia, pero siempre presente, al igual que Ángel el padre de Migue), la playa de la Antilla.</br><br>
+	Como nos conocéis y sabéis que no nos perdemos una, como no ibamos a celebrar nuestro amor con vosotros y que disfrutasemos una vez más juntos, así que hacedlo por nosotros, ya que lo que más felices nos hace 
+	es compartir, contagiar y en definitiva vivir la vida y si es con vosotros mucho mejor!</p>
+  </section>
 
-<section id="confirmacion">
-  <h2>Confirmación de asistencia</h2>
-  <p>Por favor, confirma tu asistencia antes del 30 de septiembre.</p>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc71i9HC9NSx_TMGjHyVdwoG7-baU7U70f8XEGRfgIALmxhBQ/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-</section>
+  <section id="iglesia">
+    <h2>Iglesia</h2>
+	<img src="img/iglesia.jpg" alt="Iglesia" width="700" height="550"/>
+    <p><strong>Capilla:</strong> Montesión<br /><strong>Hora:</strong> 12:00 h<br /><strong>Dirección:</strong> Feria, 29 – Sevilla</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3417.3320568889644!2d-5.9938365883072935!3d37.39694297196654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c0787aff9ab%3A0xe7e2a90e2c42c11e!2sCapilla%20de%20Montesi%C3%B3n!5e1!3m2!1ses!2ses!4v1752344947034!5m2!1ses!2ses" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+  </section>
 
-<section id="galeria">
-  <h2>Galería de fotos</h2>
-  <div class="galeria">
-    <img src="galeria/foto1.jpg" alt="Foto 1">
-    <img src="galeria/foto2.jpg" alt="Foto 2">
-    <img src="galeria/foto3.jpg" alt="Foto 3">
-    <img src="galeria/foto4.jpg" alt="Foto 4">
-  </div>
-</section>
+  <section id="celebracion">
+    <h2>Celebración</h2>
+	<img src="img/hacienda.jpg" alt="Hacienda" />
+    <p><strong>Lugar:</strong> BellaSombra House<br /><strong>Hora:</strong> 14:30 h<br /><strong>Dirección:</strong> Urb. Roalcao, 9, 41807 Espartinas, Sevilla</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d213.62454870866694!2d-6.0874353233240015!3d37.38244977757726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0xd126c0787aff9ab%3A0xe7e2a90e2c42c11e!2sCapilla%20de%20Montesi%C3%B3n%2C%20C.%20Feria%2C%2029%2C%20Casco%20Antiguo%2C%2041003%20Sevilla!3m2!1d37.3969423!2d-5.9912879!4m5!1s0xd1213931ae0633d%3A0xc18e679b557ceef1!2sBellasombra%20House%2C%20Urbanizaci%C3%B3n%20Roalcao%2C%20Espartinas!3m2!1d37.3828508!2d-6.089315099999999!5e1!3m2!1ses!2ses!4v1752362582942!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+  </section>
 
-<section id="faq">
-  <h2>Preguntas frecuentes</h2>
-  <p><strong>¿Puedo llevar acompañante?</strong><br>Sí, indícalo en el formulario.</p>
-  <p><strong>¿Hay menú vegetariano o para alérgenos?</strong><br>Sí, coméntanoslo en el formulario.</p>
-  <p><strong>¿Dónde aparcar?</strong><br>La hacienda tiene parking propio.</p>
-</section>
+  <section id="transporte">
+    <h2>Transporte</h2>
+	<img src="img/bus.jpg" alt="Bus"/>
+	<p><strong>¡Importante!</strong> desde la capilla a la parada del autobus, son unos <strong>15 min andando</strong>, por favor tenedlo en cuenta también,
+	a la hora de saber si vais a utilizar este medio de transporte o no. Gracias!</p>
+	
+    <p><strong>Salida de autobuses:</strong> Parlmento, 14:00 h</p>
+	<p><a href="https://maps.app.goo.gl/r1fBccouXRpgznrQA">Ver Ubicación</a>
 
-<script>
-  function toggleAudio() {
-    const audio = document.getElementById('bodaAudio');
-    if (audio.paused) audio.play();
-    else audio.pause();
-  }
-</script>
+	<p><strong>Estimación de precio en transporte privado desde la capilla a BellaSombra:</strong> 25€ - 30€
+	<img src="img/taxi.jpg" alt="Taxi"/>	
+	
+    <p><strong>Horarios de autobus de vuelta:</strong> 21:00 h, 23:00 h y Final</p>
 
+  </section>
+
+  <!-- Dress Code -->
+  <section id="dresscode">
+    <h2>Dress Code</h2>
+    <p>Queremos que te sientas cómodo/a. Recomendamos <strong>traje</strong> para los caballeros y <strong>vestido de cóctel</strong> o largo para las invitadas. Evita el blanco y tonos muy claros. ¡Gracias! 
+	Para las mujeres, saber que el terreno es cesped, aunque el terreno es duro.</p>
+  </section>
+
+  <section id="confirmacion">
+    <h2>Confirmación de asistencia</h2>
+    <p>Por favor, confirma tu asistencia antes del 30 de septiembre.</p>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSc71i9HC9NSx_TMGjHyVdwoG7-baU7U70f8XEGRfgIALmxhBQ/viewform?embedded=true"
+      width="100%"
+      height="600"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+    >Cargando…</iframe>
+  </section>
+
+  <section id="galeria">
+    <h2>Galería de fotos</h2>
+    <div class="galeria">
+      <img src="galeria/foto1.jpg" alt="Foto 1" />
+      <img src="galeria/foto2.jpg" alt="Foto 2" />
+      <img src="galeria/foto3.jpg" alt="Foto 3" />
+      <img src="galeria/foto4.jpg" alt="Foto 4" />
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Puedo llevar acompañante?</strong><br />Sí, indícalo en el formulario.</p>
+    <p><strong>¿Hay menú vegetariano o para alérgenos?</strong><br />Sí, coméntanoslo en el formulario.</p>
+    <p><strong>¿Dónde aparcar?</strong><br />Alrededor de la hacienda habrá sitio para aparcar, pero la hacienda no tiene un parking específico.</p>
+  </section>
+
+  <script>
+    const targetDate = new Date('2025-10-25T12:00:00').getTime();
+    const counter = document.getElementById('counter');
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = targetDate - now;
+      if (distance < 0) {
+        counter.textContent = '¡Hoy nos casamos!';
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      counter.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    function toggleAudio() {
+      const audio = document.getElementById('bodaAudio');
+      if (audio.paused) {
+        audio.play();
+        document.getElementById('audioBtn').textContent = '⏸️ Música';
+      } else {
+        audio.pause();
+        document.getElementById('audioBtn').textContent = '🎵 Música';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('bodaAudio');
+      audio.volume = 1;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setTimeout(() => {
+          audio.volume = 1;
+        }, 1000));
+      }
+    });
+
+    function toggleMenu(button) {
+      const navLinks = document.getElementById('nav-menu');
+      navLinks.classList.toggle('show');
+      button.classList.toggle('open');
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.getElementById('nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        navLinks.classList.remove('show');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>
-
