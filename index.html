@@ -6,6 +6,8 @@
   <title>Boda Pili & Miguel Ángel</title>
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet" />
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
     :root {
       --bg-color: #fff8f3;
@@ -142,6 +144,10 @@
     section:nth-of-type(6) { animation-delay: 1s; }
     section:nth-of-type(7) { animation-delay: 1.2s; }
     section:nth-of-type(8) { animation-delay: 1.4s; }
+	
+	.swiper { width: 100%; height: 750px; max-width: 900px; margin-inline: auto; }
+    .swiper-slide { display: flex; justify-content: center; align-items: center; }
+    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,.05);}
 	
 	section#countdown { min-height: 150px; }
 	section#confirmacion iframe { height: 600px !important; }
@@ -297,15 +303,23 @@
     >Cargando…</iframe>
   </section>
 
-  <section id="galeria">
-    <h2>Galería de fotos</h2>
-    <div class="galeria">
-      <img src="galeria/foto1.jpg" alt="Foto 1" />
-      <img src="galeria/foto2.jpg" alt="Foto 2" />
-      <img src="galeria/foto3.jpg" alt="Foto 3" />
-      <img src="galeria/foto4.jpg" alt="Foto 4" />
+<section id="galeria">
+  <h2>Galería de fotos</h2>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="galeria/qufocu.jpg" alt="Monolito" /></div>
+      <div class="swiper-slide"><img src="galeria/lanzarote.jpg" alt="Lanzarote" /></div>
+      <div class="swiper-slide"><img src="galeria/praga.jpg" alt="Praga" /></div>
+      <div class="swiper-slide"><img src="galeria/londres.jpg" alt="Londres" /></div>
+	  <div class="swiper-slide"><img src="galeria/egipto.jpg" alt="Egipto" /></div>
     </div>
-  </section>
+    <!-- Botones -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- Paginación -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
 
   <section id="faq">
     <h2>Preguntas frecuentes</h2>
@@ -314,6 +328,7 @@
     <p><strong>¿Dónde aparcar?</strong><br />Alrededor de la hacienda habrá sitio para aparcar, pero la hacienda no tiene un parking específico.</p>
   </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     const targetDate = new Date('2025-10-25T12:00:00').getTime();
     const counter = document.getElementById('counter');
@@ -372,6 +387,19 @@
         hamburger.setAttribute('aria-expanded', 'false');
       });
     });
+	const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      spaceBetween: 30
+    });
+	
   </script>
 </body>
 </html>
