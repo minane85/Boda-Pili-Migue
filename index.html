@@ -33,6 +33,11 @@
       color: var(--accent);
       font-size: 36px;
     }
+	h3 {
+	  font-family: 'Great Vibes', cursive;
+      color: var(--accent);
+      font-size: 42px;
+	  }
     p, li {
       font-size: 18px;
       line-height: 1.6;
@@ -152,12 +157,18 @@
       .swiper { height: 450px; }
     }
     @media (min-width: 769px) {
-      .swiper { height: clamp(650px, 60vw, 450px); }
+      .swiper { height: clamp(750px, 60vw, 450px); }
     }
     .swiper-slide { display: flex; justify-content: center; align-items: center; }
     .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,.05);}
 	
-	section#countdown { min-height: 150px; }
+	section#countdown { 
+	min-height: 150px;
+    background-image: url('img/fondo.png'); /* Ajusta la ruta si está en otra carpeta */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+	}
 	section#confirmacion iframe { height: 600px !important; }
 	
     @keyframes fadeInUp {
@@ -174,13 +185,6 @@
       width: 100%;
       height: auto;
       border-radius: 8px;
-    }
-
-    .countdown {
-      font-size: 28px;
-      font-weight: bold;
-      margin-top: 20px;
-      color: var(--accent);
     }
 
     .toggle-btn {
@@ -207,6 +211,12 @@
         display: none;
       }
     }
+	@media (max-width: 768px) {
+       section#countdown {
+       background-position: top center;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -238,7 +248,7 @@
 
   <!-- Cuenta atrás -->
   <section id="countdown">
-    <h2>Cuenta atrás para el gran día</h2>
+    <h3>Cuenta atrás para el gran día</h3>
     <div class="countdown" id="counter"></div>
   </section>
 
