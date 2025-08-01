@@ -6,9 +6,6 @@
   <title>Boda Pili & Miguel Ángel</title>
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet" />
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://use.typekit.net/hxd3uhe.css">
   <style>
     :root {
       --bg-color: #fff8f3;
@@ -29,32 +26,17 @@
       color: var(--text-color);
       transition: background-color 0.6s ease, color 0.6s ease;
     }
-    h1{
-      font-family: 'Great Vibes';
+    h1, h2 {
+      font-family: 'Great Vibes', cursive;
       color: var(--accent);
       font-size: 36px;
     }
-	h2{
-      font-family: 'Great Vibes', cursive;
-      color: var(--accent);
-      font-size: 70px;
-    }
-	h3 {
-	  font-family: 'playwrite-cc-in', sans-serif;
-	  font-weight: 200;
-	  font-style: normal;
-      color: var(--accent);
-      font-size: 55px;
-	  margin-top: 10px;
-	  margin-bottom: 10px;
-      line-height: 1.5;
-	  }
     p, li {
       font-size: 18px;
       line-height: 1.6;
     }
 
-	img,iframe{max-width:100%;height:auto;border-radius:12px;}
+	img,iframe{max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.05);}
 
     button {
       background: var(--accent);
@@ -161,36 +143,7 @@
     section:nth-of-type(7) { animation-delay: 1.2s; }
     section:nth-of-type(8) { animation-delay: 1.4s; }
 	
-    .swiper-slide { display: flex; justify-content: center; align-items: center; }
-    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,.05);}
-	 .swiper { width: 100%; max-width: 900px; margin-inline: auto; }
-    @media (max-width: 768px) {
-      .swiper { height: 450px; }
-    }
-    @media (min-width: 769px) {
-      .swiper { height: clamp(750px, 60vw, 450px); }
-    }
-    .swiper-slide { display: flex; justify-content: center; align-items: center; }
-    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,.05);}
-	
-	section#countdown { 
-    background-image: url('img/fondo2.png'); /* Ajusta la ruta si está en otra carpeta */
-	background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-color: var(--section-bg);
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
-    border-bottom: 1px solid #e0dcd7;
-    text-align: center;
-    background-attachment: scroll;
-    min-height: auto;
-    aspect-ratio: 16/9;
-	}
-	
-    .countdown{font-family: 'playwrite-cc-in', sans-serif;font-size:clamp(24px,8vw,38px);font-weight:bold; margin-top:20px;color:var(--accent);display:inline-block;padding:10px 20px;border-radius:8px;}
-	
+	section#countdown { min-height: 150px; }
 	section#confirmacion iframe { height: 600px !important; }
 	
     @keyframes fadeInUp {
@@ -209,6 +162,13 @@
       border-radius: 8px;
     }
 
+    .countdown {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: var(--accent);
+    }
+
     .toggle-btn {
       position: fixed;
       right: 10px;
@@ -220,34 +180,15 @@
       background: var(--accent);
       color: white;
     }
-
     #darkBtn { top: 10px; }
-	    @media (max-width: 768px) {
-      #darkBtn {
-        display: none;
-      }
-    }
     #audioBtn { top: 55px; }
-	    @media (max-width: 768px) {
-      #audioBtn {
-        display: none;
-      }
-    }
-	@media (max-width: 768px) {
-       section#countdown {
-       background-position: top center;
-  }
-  
-}
-
   </style>
 </head>
 <body>
 
   <!-- Botones flotantes -->
+  <button id="darkBtn" class="toggle-btn" onclick="document.body.classList.toggle('dark-mode')">🌙 Modo oscuro</button>
   <button id="audioBtn" class="toggle-btn" onclick="toggleAudio()">🎵 Música</button>
-  <!--<button id="darkBtn" class="toggle-btn" onclick="document.body.classList.toggle('dark-mode')">🌙 Modo oscuro</button>-->
-
 
   <!-- Audio autoplay -->
   <audio id="bodaAudio" autoplay loop>
@@ -272,83 +213,67 @@
 
   <!-- Cuenta atrás -->
   <section id="countdown">
-   <!-- <h2>25.10.25</h2>-->
-   </br></br></br></br></br></br></br></br></br></br></br></br></br>
+    <h2>Cuenta atrás para el gran día</h2>
     <div class="countdown" id="counter"></div>
   </section>
 
   <!-- Historia -->
   <section id="historia">
-    <h3>Nuestra Historia</h3>
-    <p>Todo comenzó un 25 de octubre de hace cuatro años, lo de casarnos el mismo día un tiempo después, ha sido pura casualidad, aunque bendita casualidad. 
-	Volviendo al principio, ese 25 de octubre los dos estábamos en el mismo lugar sin saberlo y gracias a las chivatas de las redes sociales, lo supimos. 
-	Otra bonita casualidad que aprovechamos para no parar de hablar durante horas a través de la pantalla. 
-	Empezamos a notar esto que pasa pocas veces en la vida, cuando sientes que con la otra persona todo sale de forma natural, que es sencillo, que estás cómodo, que no te importaría no dormir en toda la noche porque estás donde quieres estar... Naturalidad, sencillez y espontaneidad son cualidades que nos definen y que resumen nuestra forma de vida. Nosotros somos disfrutones por naturaleza y tras esos días de primeras confidencias y encuentros, descubrimos que juntos lo éramos aún más.
-	</br></br>
-	Disfrutar del momento es nuestro mantra, ya sea de botellines por la Alameda, cenas en restaurantes de ensueño, viajes y escapadas, música en directo y conciertos, sofá y series, ratitos con amigos, momentos en familia, paseos y picnic por la playita... 
-	Nos detenemos aquí porque justo uno de esos picnics y paseos fue el momento elegido por Migue (después de varios meses paseando el anillo de pedida) para pedirle matrimonio a Pili. 
-	El lugar era el perfecto, la playa en la que ella había pasado los mejores años de su vida junto a su familia, en el que creció y en la que siente más presente a su padre, porque fue él el que más disfrutó de esos días de verano eternos que ojalá volvieran. 
-	Este lugar se ha convertido ahora en un bonito refugio de paz y relax para nosotros.
-	</br><br>
-	No podemos terminar nuestra historia sin una especial mención a Marta, hermana de la novia, que fue la que nos puso en un mismo camino para que nosotros pudiéramos elegir una misma dirección 💚 Como dato curioso, fue una bonita forma de devolverle el favor a la novia, porque ella le presentó a su marido hace ya unos cuantos años.
-	</br><br>
-	Y por supuesto, mirando al cielo, le mandamos un abrazo con alas a nuestros papás porque estamos seguros de que, aunque tristemente nunca nos vieron como pareja, estarán brindando por esta unión desde arriba, orgullosos de lo que estamos construyendo juntos.
-    Y dejando atrás los detalles más emotivos, como nos conocéis y sabéis que no nos perdemos una... 
-	¿Cómo no íbamos a celebrar nuestro amor con vosotros y disfrutar de un día repleto de ilusión? 
-	Así que hacedlo por nosotros, ya que lo que más felices nos hace es compartir, contagiar nuestra alegría y vivir la vida a vuestro lado.
-	</p>
+    <h2>Nuestra Historia</h2>
+    <p>Pues tal día como el de nuestra boda, pero 4 años atrás, empezamos a hablar los dos a través del movil, eso sí "ayudados" por Marta (hermana de Pilarín) que hizo de celestina y cuenta que de 
+	esta forma le devolvió el favor a Pili, ya que ella le presentó a su marido. </br></br>
+	Pues ese primer día de contacto, conectamos y todo resultó natural, sencillo y espontaneo. Mismo adjetivos que nos caracterizan y que resumen nuestro mantra y ley de vida que es la de disfrutar cada momento,
+    ya sea un botellin en la alameda, una cena en un restaurante de postín o un picnic en la playa; que por cierto, justo ese fue el momento que eligío Migue, para pedir matrimonio a Pili, un picnic a sólas,
+    en uno de los sitios favoritos de Antonio (padre de Pili, que no se encuentra con nosotros por desgracia, pero siempre presente, al igual que Ángel el padre de Migue), la playa de la Antilla.</br><br>
+	Como nos conocéis y sabéis que no nos perdemos una, como no ibamos a celebrar nuestro amor con vosotros y que disfrutasemos una vez más juntos, así que hacedlo por nosotros, ya que lo que más felices nos hace 
+	es compartir, contagiar y en definitiva vivir la vida y si es con vosotros mucho mejor!</p>
   </section>
 
   <section id="iglesia">
-    <h3>Ceremonia</h3>
-
-    <p><strong>Iglesia: </strong>Capilla Monte-sión<br /><strong>Hora:</strong> 12:00 h<br /></p>
-	<img src="img/iglesia.png" alt="Iglesia" width="700" height="550" background-color: white;/>
-	<p><strong>Dirección:</strong> Feria, 29 – Sevilla</p>
+    <h2>Iglesia</h2>
+	<img src="img/iglesia.jpg" alt="Iglesia" width="700" height="550"/>
+    <p><strong>Iglesia: </strong>Capilla Montesión<br /><strong>Hora:</strong> 12:00 h<br /><strong>Dirección:</strong> Feria, 29 – Sevilla</p>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3417.3320568889644!2d-5.9938365883072935!3d37.39694297196654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c0787aff9ab%3A0xe7e2a90e2c42c11e!2sCapilla%20de%20Montesi%C3%B3n!5e1!3m2!1ses!2ses!4v1752344947034!5m2!1ses!2ses" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     
   </section>
 
   <section id="celebracion">
-    <h3>Celebración</h3>
-	<p><strong>Lugar:</strong> BellaSombra House<br /><strong>Hora:</strong> 14:30 h <br />
-	<img src="img/hacienda.jpg" alt="Hacienda" /><br />
-    <strong>Dirección:</strong> Urb. Roalcao, 9, 41807 Espartinas, Sevilla</p>
-	<p>Entrada de invitados y parking por calle Sta. María</p>
-	<iframe src="https://www.google.com/maps/embed?pb=!4v1753918304182!6m8!1m7!1s4WUO4O30pKEMPFpAYGTjmw!2m2!1d37.3825062306545!2d-6.087199040770466!3f256.28742451145774!4f-0.48688298462829493!5f0.7820865974627469" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <h2>Celebración</h2>
+	<img src="img/hacienda.jpg" alt="Hacienda" />
+    <p><strong>Lugar:</strong> BellaSombra House<br /><strong>Hora:</strong> 14:30 h<br /><strong>Dirección:</strong> Urb. Roalcao, 9, 41807 Espartinas, Sevilla</p>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d376.65914440902844!2d-6.087303166479341!3d37.38244047780108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1752364928445!5m2!1ses!2ses" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
    
   </section>
 
   <section id="transporte">
-    <h3>Transporte</h3>
-	<img src="img/bus.jpg" alt="Bus"/><br>
-	<p><strong>Horarios de autobus ida:</strong>14:00 h</p>
+    <h2>Transporte</h2>
+	<img src="img/bus.jpg" alt="Bus"/>
+	<p><strong>¡Importante!</strong> desde la capilla a la parada del autobus, son unos <strong>15 min andando</strong>, por favor tenedlo en cuenta también,
+	a la hora de saber si vais a utilizar este medio de transporte o no. Gracias!</p>
+	
+    <p><strong>Salida de autobuses:</strong> Parlmento, 14:00 h</p>
 	<p><a href="https://maps.app.goo.gl/r1fBccouXRpgznrQA">Ver Ubicación</a>
-	
-	<p><strong>¡Importante!</strong> desde la capilla a la parada del autobus, son unos <strong>20 min andando</strong>, por favor tenedlo en cuenta también,
-	a la hora de saber si vais a utilizar este medio de transporte o no. Gracias!</p> </br>
-	
-	<p><strong>Horarios de autobus de vuelta:</strong></br> 21:00 h, 23:00 h y 1:00 aprox.</p></br>
-	
 
-	<img src="img/taxi.jpg" alt="Taxi"/><br>
 	<p><strong>Estimación de precio en transporte privado desde la capilla a BellaSombra:</strong> 25€ - 30€</br>
+	<img src="img/taxi.jpg" alt="Taxi"/><br>
     <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d213.62454870866694!2d-6.0874353233240015!3d37.38244977757726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0xd126c0787aff9ab%3A0xe7e2a90e2c42c11e!2sCapilla%20de%20Montesi%C3%B3n%2C%20C.%20Feria%2C%2029%2C%20Casco%20Antiguo%2C%2041003%20Sevilla!3m2!1d37.3969423!2d-5.9912879!4m5!1s0xd1213931ae0633d%3A0xc18e679b557ceef1!2sBellasombra%20House%2C%20Urbanizaci%C3%B3n%20Roalcao%2C%20Espartinas!3m2!1d37.3828508!2d-6.089315099999999!5e1!3m2!1ses!2ses!4v1752362582942!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     	
+	
+    <p><strong>Horarios de autobus de vuelta:</strong> 21:00 h, 23:00 h y Final</p>
+
   </section>
 
   <!-- Dress Code -->
   <section id="dresscode">
-    <h3>Dress Code</h3>
-    <p>Queremos que te sientas cómodo/a, así que tú decides.</br>
-	!Aviso a navegantes! El cocktail será sobre césped, aunque es un terreno bastante cómodo para andar y bailar; pero creemos que esta información es de interés para las mujeres ;).</br>
-	¡Gracias! 
-	</p>
+    <h2>Dress Code</h2>
+    <p>Queremos que te sientas cómodo/a.</br> Recomendamos <strong>traje</strong> para los caballeros y <strong>vestido de cóctel</strong> o largo para las invitadas. Evita el blanco y tonos muy claros.</br>
+	Para las mujeres, saber que el terreno es cesped, aunque el terreno es duro.</br>
+	¡Gracias! </p>
   </section>
 
   <section id="confirmacion">
-    <h3>Confirmación de asistencia</h3>
-    <p><strong>Por favor, confirma tu asistencia antes del 15 de septiembre.</strong></p>
+    <h2>Confirmación de asistencia</h2>
+    <p>Por favor, confirma tu asistencia antes del 30 de septiembre.</p>
     <iframe
       src="https://docs.google.com/forms/d/e/1FAIpQLSc71i9HC9NSx_TMGjHyVdwoG7-baU7U70f8XEGRfgIALmxhBQ/viewform?embedded=true"
       width="100%"
@@ -359,38 +284,23 @@
     >Cargando…</iframe>
   </section>
 
-<section id="galeria">
-  <h3>Galería de fotos</h3>
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="galeria/qufocu.jpg" alt="Monolito" /></div>
-      <div class="swiper-slide"><img src="galeria/lanzarote.jpg" alt="Lanzarote" /></div>
-      <div class="swiper-slide"><img src="galeria/praga.jpg" alt="Praga" /></div>
-      <div class="swiper-slide"><img src="galeria/londres.jpg" alt="Londres" /></div>
-	  <div class="swiper-slide"><img src="galeria/egipto.jpg" alt="Egipto" /></div>
+  <section id="galeria">
+    <h2>Galería de fotos</h2>
+    <div class="galeria">
+      <img src="galeria/foto1.jpg" alt="Foto 1" />
+      <img src="galeria/foto2.jpg" alt="Foto 2" />
+      <img src="galeria/foto3.jpg" alt="Foto 3" />
+      <img src="galeria/foto4.jpg" alt="Foto 4" />
     </div>
-    <!-- Botones -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <!-- Paginación -->
-    <div class="swiper-pagination"></div>
-  </div>
-</section>
+  </section>
 
   <section id="faq">
-    <h3>Preguntas frecuentes</h3>
-    <p><strong>¿Puedo llevar acompañante?</strong><br />Sí, pasale el enlace para que se registre tambíen o hazlo tu mismo a través del formulario y avisanos si no lo teníamos previsto.</p>
-    <p><strong>¿Hay opciones para alérgenos?</strong><br/>Sí, coméntanoslo en el formulario.</p>
-    <p><strong>¿Dónde aparcar?</strong><br/>En la calle Sta. María(Espartinas) que es por donde entran los invitados, será dónde se pueda aparcar. Allí además habrá personal de la hacienda preparado para indicar donde aparcar.</p>
-	<p><strong>¿Van niños a la boda?</strong><br/>No, esta será una celebración sólo para adultos, asi que tomaos este ratito para vosotros y disfrutad con nosotros</p>
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Puedo llevar acompañante?</strong><br />Sí, regístralo tambíen en el formulario.</p>
+    <p><strong>¿Hay menú vegetariano o para alérgenos?</strong><br />Sí, coméntanoslo en el formulario.</p>
+    <p><strong>¿Dónde aparcar?</strong><br />Alrededor de la hacienda habrá sitio para aparcar, pero la hacienda no tiene un parking específico.</p>
   </section>
-  
-  <center>
-  <img src="img/firma.png" alt="firma" style="width: 30%; height: 50%; display: block;" />
-  </center>
-  
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     const targetDate = new Date('2025-10-25T12:00:00').getTime();
     const counter = document.getElementById('counter');
@@ -449,19 +359,7 @@
         hamburger.setAttribute('aria-expanded', 'false');
       });
     });
-	const swiper = new Swiper('.swiper', {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      spaceBetween: 30
-    });
-	
   </script>
 </body>
 </html>
+
