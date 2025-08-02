@@ -120,30 +120,32 @@
       transform: rotate(90deg);
     }
 
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;  /* Cambiado de absolute a fixed */
-    top: 3.5rem;      /* Altura para que quede debajo del botón */
-    left: 1rem;       /* Mismo que el botón hamburguesa */
-    right: auto;      /* Opcional, para evitar conflicto */
-    width: 200px;     /* O ancho deseado */
-    background: var(--section-bg);
-    padding: 10px 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    max-height: 0;
-    opacity: 0;
-    pointer-events: none;
-    border-radius: 8px;
-    z-index: 9999;    /* Muy arriba para que esté sobre todo */
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-  }
-  .nav-links.show {
-    max-height: 500px; /* o el tamaño suficiente */
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+      }
+      .nav-links {
+        flex-direction: column;
+        background: var(--section-bg);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        left: 10px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .nav-links.show {
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
 
     section {
       padding: 60px 20px;
