@@ -6,12 +6,241 @@
   <title>Boda Pili & Miguel Ángel</title>
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora&display=swap" rel="stylesheet" />
-
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="styles.css">
   <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://use.typekit.net/hxd3uhe.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <style>
+    :root {
+      --bg-color: #fff8f3;
+      --text-color: #333;
+      --section-bg: #ffffff;
+      --accent: #b48c75;
+    }
+    body.dark-mode {
+      --bg-color: #1f1f1f;
+      --text-color: #f5f5f5;
+      --section-bg: #2c2c2c;
+    }
+    body {
+      font-family: 'Lora', serif;
+      margin: 0;
+      background: url('https://www.transparenttextures.com/patterns/linen.png'), linear-gradient(to bottom, var(--bg-color), #f7e8dd);
+      background-repeat: repeat;
+      color: var(--text-color);
+      transition: background-color 0.6s ease, color 0.6s ease;
+    }
+    h1{
+      font-family: 'Great Vibes';
+      color: var(--accent);
+      font-size: 36px;
+    }
+	h2{
+      font-family: 'Great Vibes', cursive;
+      color: var(--accent);
+      font-size: 70px;
+    }
+	h3 {
+	  font-family: 'playwrite-cc-in', sans-serif;
+	  font-weight: 200;
+	  font-style: normal;
+      color: var(--accent);
+      font-size: 50px;
+	  margin-top: 10px;
+	  margin-bottom: 10px;
+      line-height: 1.5;
+	  }
+    p, li {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+	img,iframe{max-width:100%;height:auto;border-radius:12px;}
+
+    button {
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background: #a6795f; }
+
+    nav {
+      background: var(--section-bg);
+      padding: 15px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centrar enlaces */
+      gap: 40px; /* Espacio entre botón y menú */
+      position: relative;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      overflow: hidden;
+      max-height: 200px; /* Visible */
+      opacity: 1;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 300;
+      transition: transform 0.3s ease;
+    }
+    .hamburger.open {
+      transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+      }
+      .nav-links {
+        flex-direction: column;
+        background: var(--section-bg);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        left: 10px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .nav-links.show {
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+      border-bottom: 1px solid #e0dcd7;
+      text-align: center;
+      background: var(--section-bg);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    section:nth-of-type(2) { animation-delay: 0.2s; }
+    section:nth-of-type(3) { animation-delay: 0.4s; }
+    section:nth-of-type(4) { animation-delay: 0.6s; }
+    section:nth-of-type(5) { animation-delay: 0.8s; }
+    section:nth-of-type(6) { animation-delay: 1s; }
+    section:nth-of-type(7) { animation-delay: 1.2s; }
+    section:nth-of-type(8) { animation-delay: 1.4s; }
+	
+    .swiper-slide { display: flex; justify-content: center; align-items: center; }
+    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,.05);}
+	 .swiper { width: 100%; max-width: 900px; margin-inline: auto; }
+    @media (max-width: 768px) {
+      .swiper { height: 450px; }
+    }
+    @media (min-width: 769px) {
+      .swiper { height: clamp(750px, 60vw, 450px); }
+    }
+    .swiper-slide { display: flex; justify-content: center; align-items: center; }
+    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,.05);}
+	
+	section#countdown { 
+    background-image: url('img/fondo2.png'); /* Ajusta la ruta si está en otra carpeta */
+	background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: var(--section-bg);
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+    border-bottom: 1px solid #e0dcd7;
+    text-align: center;
+    background-attachment: scroll;
+    min-height: auto;
+    aspect-ratio: 16/9;
+	}
+	
+    .countdown{font-family: 'playwrite-cc-in', sans-serif;font-size:clamp(24px,8vw,38px);font-weight:bold; margin-top:20px;color:var(--accent);display:inline-block;padding:10px 20px;border-radius:8px;}
+	
+	section#confirmacion iframe { height: 600px !important; }
+	
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .galeria img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      right: 10px;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 999;
+      background: var(--accent);
+      color: white;
+    }
+
+    #darkBtn { top: 10px; }
+	    @media (max-width: 768px) {
+      #darkBtn {
+        display: none;
+      }
+    }
+    #audioBtn { top: 55px; }
+	    @media (max-width: 768px) {
+      #audioBtn {
+        display: none;
+      }
+    }
+	@media (max-width: 768px) {
+       section#countdown {
+       background-position: top center;
+  }
+  
+}
+
+  </style>
 </head>
 <body>
 
@@ -135,11 +364,11 @@
   <h3>Galería de fotos</h3>
   <div class="swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="galeria/qufocu.jpg" alt="Monolito"></div>
-      <div class="swiper-slide"><img src="galeria/lanzarote.jpg" alt="Lanzarote"></div>
-      <div class="swiper-slide"><img src="galeria/praga.jpg" alt="Praga"></div>
-      <div class="swiper-slide"><img src="galeria/londres.jpg" alt="Londres"></div>
-	  <div class="swiper-slide"><img src="galeria/egipto.jpg" alt="Egipto"></div>
+      <div class="swiper-slide"><img src="galeria/qufocu.jpg" alt="Monolito" /></div>
+      <div class="swiper-slide"><img src="galeria/lanzarote.jpg" alt="Lanzarote" /></div>
+      <div class="swiper-slide"><img src="galeria/praga.jpg" alt="Praga" /></div>
+      <div class="swiper-slide"><img src="galeria/londres.jpg" alt="Londres" /></div>
+	  <div class="swiper-slide"><img src="galeria/egipto.jpg" alt="Egipto" /></div>
     </div>
     <!-- Botones -->
     <div class="swiper-button-next"></div>
@@ -162,7 +391,78 @@
   </center>
   
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const targetDate = new Date('2025-10-25T12:00:00').getTime();
+    const counter = document.getElementById('counter');
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = targetDate - now;
+      if (distance < 0) {
+        counter.textContent = '¡Hoy nos casamos!';
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      counter.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    function toggleAudio() {
+      const audio = document.getElementById('bodaAudio');
+      if (audio.paused) {
+        audio.play();
+        document.getElementById('audioBtn').textContent = '⏸️ Música';
+      } else {
+        audio.pause();
+        document.getElementById('audioBtn').textContent = '🎵 Música';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('bodaAudio');
+      audio.volume = 1;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => setTimeout(() => {
+          audio.volume = 1;
+        }, 1000));
+      }
+    });
+
+    function toggleMenu(button) {
+      const navLinks = document.getElementById('nav-menu');
+      navLinks.classList.toggle('show');
+      button.classList.toggle('open');
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.getElementById('nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        navLinks.classList.remove('show');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+	const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      spaceBetween: 30
+    });
+	
+  </script>
 </body>
 </html>
