@@ -1,17 +1,4 @@
-  // Cerrar al clicar fuera y con Escape
-  document.addEventListener('click', (e) => {
-    if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeMenu();
-    }
-  });
-
-    const targetDate = new Date('2025-10-25T12:00:00').getTime();
+const targetDate = new Date('2025-10-25T12:00:00').getTime();
     const counter = document.getElementById('counter');
     function updateCountdown() {
       const now = Date.now();
