@@ -90,6 +90,7 @@
       overflow: hidden;
       max-height: 200px; /* Visible */
       opacity: 1;
+	  padding-top: 4rem;
     }
     nav a {
       text-decoration: none;
@@ -104,11 +105,12 @@
       border: none;
       color: var(--accent);
       cursor: pointer;
-      position: absolute;
+      position: fixed;
       left: 20px;
-      top: 50%;
+      top: 1rem;
+	  right: 1rem;
       transform: translateY(-50%);
-      z-index: 300;
+      z-index: 1000;
       transition: transform 0.3s ease;
     }
     .hamburger.open {
